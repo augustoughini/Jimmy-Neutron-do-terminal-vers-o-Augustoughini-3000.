@@ -1,6 +1,6 @@
 # Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000
 
-![coverage](https://codecov.io/gh/augustoughini/Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000/branch/main/graph/badge.svg)
+[![Coverage](https://codecov.io/gh/augustoughini/Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000/branch/main/graph/badge.svg)](https://codecov.io/gh/augustoughini/Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000)
 
 **Alô SIM!**  
 Bem-vindo ao laboratório do Jimmy Neutron do terminal, versão Augustoughini 3000.  
