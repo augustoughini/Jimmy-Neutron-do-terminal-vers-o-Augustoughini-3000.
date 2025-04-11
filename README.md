@@ -1,52 +1,93 @@
-# Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000.
-AÍ SIM 😤🔬💥 Bem-vindo ao laboratório do Jimmy Neutron do terminal, versão Augustoughini 3000. Agora você vai ver ciência de verdade aplicada ao teste automatizado profissional com magia negra de nano e supertest.
+# Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000
 
-🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-AUGUSTOUGHINI TEM 1 CI COM COVERAGE, BADGE E SEED AUTOMÁTICO
-O MUNDO NÃO ESTAVA PREPARADO. O GITHUB TÁ TREMENDO.
-O CHATGPT VAI CRASHAR E O SAM ALTMAN VAI TE CHAMAR PRA REESCREVER O LINUX EM TYPECRIPT.
+![coverage](https://codecov.io/gh/augustoughini/Jimmy-Neutron-do-terminal-vers-o-Augustoughini-3000/branch/main/graph/badge.svg)
 
+**Alô SIM!**  
+Bem-vindo ao laboratório do Jimmy Neutron do terminal, versão Augustoughini 3000.  
+Aqui você vai ver ciência de verdade aplicada ao teste automatizado profissional com magia negra e o nano mágico.
+
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥  
+**AUGUSTOUGHINI TEM 1 CI COM COVERAGE, BADGE E SEED AUTOMÁTICO.  
+O MUNDO NÃO ESTAVA PREPARADO. O GITHUB TÁ TREMENDO.  
+O CHATGPT VAI CRASHAR. O SAM ALTMAN VAI TE CHAMAR PRA REESCREVER O LINUX EM TYPESCRIPT.**  
+🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+---
+
+## 🧠 Erro clássico resolvido
+
+```bash
 TypeError: Cannot read properties of undefined (reading 'address')
-💥 O motivo do erro
 
-Esse erro vem do supertest tentando acessar app.address() numa instância que não tem servidor real escutando porta. Isso acontece quando:
-	•	Você importa o app do app.ts, que não faz listen(), ou
-	•	O app que está sendo passado pro supertest não é o correto
-
- ✅ Solução direta (2 formas possíveis)
+Esse erro aparece quando o supertest tenta acessar app.address() mas o app ainda não está escutando uma porta real (não passou por .listen()).
 
 ⸻
 
-✅ Caminho 1 – usando só o app direto (mais comum e ideal)
+✅ Solução direta (2 caminhos possíveis)
 
-Passo 1: garanta que o src/app.ts termina com:
-export default app
-E NÃO tem app.listen(...) nele.
+🧪 Caminho 1 – usando o app direto (mais limpo e ideal)
+	1.	No seu src/app.ts, exporte o app sem rodar listen():
 
-Passo 2: no test/api.test.ts, importa o app assim:
-import request from 'supertest'
-import app from '../src/app'
+export default app;
 
-✅ Caminho 2 – se o app precisa ser escutado (como server.listen)
+	2.	No teste:
 
-Se você não consegue usar só o app direto, aí você precisa criar manualmente o server dentro do teste, assim:
-import request from 'supertest'
-import app from '../src/app'
-import http from 'http'
+import request from 'supertest';
+import app from '../src/app';
 
-let server: http.Server
+const res = await request(app).get('/api/status');
+
+
+
+⸻
+
+🔁 Caminho 2 – escutando na unha (modo server)
+
+import request from 'supertest';
+import app from '../src/app';
+import http from 'http';
+
+let server: http.Server;
 
 beforeAll((done) => {
-  server = app.listen(() => {
-    done()
-  })
-})
+  server = app.listen(() => done());
+});
 
 afterAll((done) => {
-  server.close(done)
-})
+  server.close(done);
+});
 
-E usa o server no lugar do app:
-await request(server).get('/api/status')
+const res = await request(server).get('/api/status');
 
-AAAAHHHH! ENTÃO VOCÊ QUER O NANO MÁGICO™?!
+
+
+⸻
+
+🧪 Rodando os testes com cobertura
+
+npx jest --coverage && open coverage/lcov-report/index.html
+
+No Linux, use xdg-open no lugar de open.
+
+⸻
+
+⚙️ CI Orquestrado
+	•	PostgreSQL rodando em serviço no GitHub Actions
+	•	Seed automático via Prisma (ts-node scripts/seed.ts)
+	•	Jest + cobertura + badge via Codecov
+	•	Server escutando em porta aleatória (app.listen(0))
+
+⸻
+
+✨ Dica bônus
+	•	A badge no topo deste README se atualiza sozinha a cada push.
+	•	Testes estão modularizados e expansíveis (auth, rotas, middleware, etc).
+	•	Cobertura exibida com visual detalhado via lcov-report.
+
+⸻
+
+⚡ E aí, vai continuar testando…
+
+Ou vai ativar o modo NANO MÁGICO?
+
+---
